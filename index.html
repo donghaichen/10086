@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>jquery仿10086官网左右切换公告 - 港港网络</title>
+<style>
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font:inherit;font-size:100%;vertical-align:baseline;}
+html{line-height:1;}
+ol,ul{list-style:none;}
+table{border-collapse:collapse;border-spacing:0;}
+caption,th,td{text-align:left;font-weight:normal;vertical-align:middle;}
+q,blockquote{quotes:none;}
+q:before,q:after,blockquote:before,blockquote:after{content:"";content:none;}
+a img{border:none;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary{display:block;}
+body{background:#FFF;-webkit-font-smoothing:antialiased;}
+.inner{width:750px;height:auto;margin:0 auto;}
+@media only screen and (max-width:750px){.inner{width:100%;padding:0 40px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+}
+a{-webkit-transition:all 0.3s ease-in-out;-moz-transition:all 0.3s ease-in-out;-o-transition:all 0.3s ease-in-out;transition:all 0.3s ease-in-out;}
+h1{padding:30px 0;margin-bottom:50px;background:#ff6860;font:700 20px/20px "proxima-nova",sans-serif;color:#FFFFFF;letter-spacing:1px;text-transform:uppercase;text-align:center;text-shadow:0 1px 0 #ff5047;}
+p{margin:0 auto 100px;font:400 14px/24px "Helvetica","Arial",sans-serif;color:#4D4D4D;text-align:center;}
+p strong,p a{font-weight:bold;color:#ff6860;}
+p a{text-decoration:none;border-bottom:1px solid #E8E8E8;}
+div{text-align:center;}
+
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: " ";
+clear: both;
+height: 0;
+}
+.clearfix{*zoom:1;}
+
+</style>
+</head>
+
+<body>
+       <h1>JQuery notice 1.0</h1>
+<div class="inner">
+            <p>
+                <strong>JQuery notice</strong> 仿10086官网仿10086官网左右切换公告
+            </p>
+  <div>
+
+
+			    <!-- 代码 开始 -->
+				
+
+				<style>
+			
+				/*公告切换*/
+.indexgg{width:1000px;height:30px;line-height:30px;font-size:14px;margin:30px 0 5px 0;_margin-right:-3px;} 
+.indexgg span{float:left;padding:0 0 0 25px;color:#0085d0;background:url(images/icons2014.gif) no-repeat -25px 7px;}
+.indexgg ul{float:left;}
+.indexgg li{float:left;padding:0 25px 0 20px;width: 400px; background:url(images/icons2014.gif) no-repeat 5px -60px;}
+.indexgg li a,.indexgg li a:visited{float:left;color:#0085d0;}
+.indexgg li span{float:left;color:#0085d0;background:none;padding:0 0 0 10px;}
+.qhbtn{float:right;padding:5px 2px 0 0; cursor:pointer;display:inline;}
+.qhbtn a,.qhbtn a:visited,.qhbtn a:hover{color: #0085d0;width:18px; height:20px;text-decoration:none;}
+</style>
+                       <!--公告切换--> 
+					 <script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js?ver=20131120"></script>
+<script type="text/javascript">
+jQuery.fn.turnPage = function(userOptions)
+{
+    // Default options
+    var options = {
+	  allpage:0,
+	  container:""
+	}
+	
+    var pageIndex=1,preIndex,isAuto=true,inteval;
+	
+	function init(where){
+	    var length=where.find("ul").length;
+		options.allpage=length;
+		preIndex=length;
+	}
+	
+    function turnAuto(where){
+        return function _move(){
+		    if(isAuto){
+			    pageIndex++;
+			    preIndex=pageIndex-1;
+			    if(pageIndex>options.allpage){
+			        pageIndex=1;
+			    }
+				if(preIndex==0){
+			        preIndex=options.allpage;
+			    }
+			    var allUl=where.find("ul");
+			    $(allUl[pageIndex-1]).css('display','block');
+			    $(allUl[preIndex-1]).css('display','none');
+			}
+		};
+    }
+	
+	function turnClick(where,para){
+        if(para==1){			    
+				pageIndex++;
+			    preIndex=pageIndex-1;
+			    if(pageIndex>options.allpage){
+			        pageIndex=1;
+			    }
+				if(preIndex<=0){
+			        preIndex=options.allpage;
+			    }
+			    var allUl=$("."+where).find("ul");
+			    $(allUl[pageIndex-1]).css('display','block');
+			    $(allUl[preIndex-1]).css('display','none');			   
+		}else{
+		    pageIndex--;
+			    preIndex=pageIndex+1;
+			    if(pageIndex<=0){
+			        pageIndex=options.allpage;
+			    }
+			if(preIndex>options.allpage){
+			        preIndex=1;
+			    }
+			    var allUl=$("."+where).find("ul");
+			    $(allUl[pageIndex-1]).css('display','block');
+			    $(allUl[preIndex-1]).css('display','none');		    
+		}
+    }
+	
+	function checkMouse(onOrNot){
+	    if(onOrNot){
+		    isAuto=false;
+		}else{
+		    isAuto=true;
+		}
+	}
+	var here=this.attr('class');
+    //var allA=this.find("a");
+	$.extend(options,userOptions);
+	$("."+this.attr('class')+" .left").bind("click",function(){turnClick(here,0)});
+	$("."+this.attr('class')+" .right").bind("click",function(){turnClick(here,1)});
+	this.on('mouseover',function(evt){checkMouse(true)});
+	this.on('mouseout',function(evt){checkMouse(false)});
+	init(this);
+	interval=setInterval(turnAuto(this),5000);
+}
+
+$(function(){
+    $(".indexgg").turnPage();
+}) </script> 
+    <div class="indexgg">
+      <span>公告：</span>
+      <ul id="js08">
+      	  
+        <li><a Onclick="if (typeof(_tag)!= 'undefined'){_tag.dcsMultiTrack('WT.event','INDEX_GG_Z1');}" title="中国移动2014年中期业绩公告和4G客户运营数据" href="../aboutus/news/GroupNews/201408/t20140814_55090.htm" target="_blank" >中国移动2014年中期业绩公告和4G客户运营数据</a><span>2014-08-14</span></li>
+     	
+      
+        <li><a Onclick="if (typeof(_tag)!= 'undefined'){_tag.dcsMultiTrack('WT.event','INDEX_GG_Y1');}" title="关于上海地铁关闭2.4G手机钱包通道的公告" href="../aboutus/news/pannounce/sh/201408/t20140814_55154.htm" target="_blank" >关于上海地铁关闭2.4G手机钱包通道的公告</a><span>2014-08-11</span></li>
+     		
+      </ul>
+      
+      <ul id="js09" style="display:none;">
+      
+        <li><a Onclick="if (typeof(_tag)!= 'undefined'){_tag.dcsMultiTrack('WT.event','INDEX_GG_Z2');}" title="关于8月12日至8月13日网站系统维护的公告" href="../aboutus/news/announced/201408/t20140812_54962.htm" target="_blank">关于8月12日至8月13日网站系统维护的公告</a><span>2014-08-12</span></li>	
+       	
+        	
+		<li><a Onclick="if (typeof(_tag)!= 'undefined'){_tag.dcsMultiTrack('WT.event','INDEX_GG_Y2');}" title="关于停止受理若干资费产品的公告" href="../aboutus/news/pannounce/sh/201407/t20140716_54625.htm" target="_blank">关于停止受理若干资费产品的公告</a><span>2014-07-15</span></li>
+       		
+      </ul>       
+       <!--公告切换按钮-->
+      <div class="qhbtn"><a class="left"> < </a> <a class="right"> > </a></div>
+      
+    </div>
+    <!--公告切换结束-->
+  <!-- 代码 结束 -->          
+        </div>
+    </div>
+
+
+      
+
+	
+</body>
+</html>
